@@ -1,5 +1,6 @@
 import express from "express";
 import _ from "lodash";
+import axios from "axios";
 
 const options = {
   method: "GET",
@@ -11,12 +12,11 @@ const options = {
 
 const fetchData = async () => {
   try {
-    const data = await fetch(
+    const response = await axios.get(
       "https://intent-kit-16.hasura.app/api/rest/blogs",
       options
     );
-    const json = await data.json();
-    return json;
+    return response.data;
   } catch (error) {
     console.log(error);
     return null;
